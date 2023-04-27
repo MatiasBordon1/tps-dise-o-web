@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TP</title>
+
+    <!--getElementById()
+    getElementsByClassName()
+    getElementsByTagName() -->
+
+    <script>
+        function insertarById() {
+            var hText = document.getElementById("myP")
+            hText.innerHTML = "Aguante estudiantes"
+        }
+
+        function insertarByClass() {
+            alert("Martiiiiiin")
+            var hText = document.getElementsByClassName("test")[0]
+            hText.innerHTML = "Boselli"
+        }
+
+        function insertarByTagName() {
+            alert("Bilardo")
+            var hText = document.getElementsByTagName("h3")
+            hText[0].innerHTML = "h3 s"
+        }
+
+        function addRow() {
+        var tbody = document.getElementsByTagName("tbody")[0]
+        var row = tbody.insertRow()
+        row.setAttribute("id", "row" + parseInt(tbody.rows.length - 1))
+        for (var i = 0; i < document.getElementsByTagName("tr")[0].cells.length; i++) {
+            var cell = row.insertCell()
+            cell.setAttribute("id", "cell" + i)
+            if (i !== 2) {
+                if (tbody.rows.length > 1) {
+                    cell.innerHTML = document.getElementById("cell" + i).innerHTML
+                } else {
+                    cell.innerHTML = "CELL" + (i + 1) + "<button onclick=deleteRow(this.parentElement.parentElement.getAttribute('id'))>X</button>"
+                }
+            } else {
+                var button = document.createElement("button")
+                button.innerHTML = "X"
+                button.addEventListener("click", function () {
+                    deleteRow(row.getAttribute("id"))
+                })
+                cell.append(button)
+            }
+        }
+    }
+
+    function deleteRow(rowId) {
+        document.getElementById(rowId).remove()
+    }
+    </script>
+
+</head>
+
+<body>
+    <button onclick="insertarById()">Escribe ya (by id)</button>
+    <button onclick="insertarByClass()">Escribe ya (by class)</button>
+    <button onclick="insertarByTagName()">Escribe ya (by tagName)</button>
+    <p id="myP"></p>
+    <p class="test"></p>
+    <p class="test"></p>
+    <h3></h3>
+
+    <br>
+    <table style="border: 1px solid">
+        <thead>
+            <tr>
+                <th>Header 1</th>
+                <th>Header 2</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    <br>
+    <button onclick="addRow()">agregar fila</button>
+    <button onclick="deleteRow()">borrar</button>
+</body>
+
+</html>
